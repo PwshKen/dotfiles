@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# lots of these settings were borrowed from:
+# https://github.com/paulmillr/dotfiles/blob/master/etc/macos-settings.sh
+# https://github.com/CodelyTV/dotfiles/tree/master/mac
+# https://github.com/geerlingguy/dotfiles
+
 # Mac OS X configuration
 #
 # This configuration applies to the latest version of macOS (currently 11.3),
@@ -190,6 +195,55 @@ defaults write com.apple.universalaccess reduceTransparency -bool true
 # Bottom left screen corner → Desktop
 #defaults write com.apple.dock wvous-bl-corner -int 4
 #defaults write com.apple.dock wvous-bl-modifier -int 0
+
+###############################################################################
+# 🖱️ Mouse
+###############################################################################
+
+# Increase speed
+defaults write -g com.apple.mouse.scaling 5
+
+# Enable secondary button on click
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
+
+# Enable swipe with one single finger gesture to go back while browsing
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture 1
+
+###############################################################################
+# 💻 Trackpad
+###############################################################################
+
+# Tracking Speed: from 0 to 3
+defaults write -g com.apple.trackpad.scaling -float 3
+
+# Enable tap to click for the current user and the login screen. (Don't have to press down on the trackpad -- just tap it.)
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
+defaults write -g com.apple.mouse.tapBehavior -int 1
+
+# Trackpad: map two fingers tap to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+
+###############################################################################
+# 🍎 Mac App Store
+###############################################################################
+
+# Enable the automatic update check
+# Check for software updates daily, not just once per week
+# Download newly available updates in background
+# Install System data files & security updates
+# Turn on app auto-update
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+defaults write com.apple.commerce AutoUpdate -bool true
+defaults write com.apple.appstore ShowDebugMenu -bool true
 
 ###############################################################################
 # Safari & WebKit                                                             #
