@@ -4,6 +4,7 @@
 # https://github.com/paulmillr/dotfiles/blob/master/etc/macos-settings.sh
 # https://github.com/CodelyTV/dotfiles/tree/master/mac
 # https://github.com/geerlingguy/dotfiles
+# https://github.com/albertoqa/dotfiles/blob/master/bin/macos.sh
 
 # Mac OS X configuration
 #
@@ -40,7 +41,7 @@ fi
 sudo systemsetup -settimezone "America/Chicago" > /dev/null
 
 ###############################################################################
-# General UI/UX                                                               #
+# ⚙️ General UI/UX
 ###############################################################################
 
 # Expand save panel by default
@@ -62,18 +63,42 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 ###############################################################################
-# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+# 🖱️ Mouse & Trackpad
 ###############################################################################
 
 # Trackpad: Haptic feedback (light, silent clicking)
 #defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
 #defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0
 
-# Trackpad: map bottom right corner to right-click (requires restart!)
-#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
-#defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
-#defaults write NSGlobalDomain ContextMenuGesture -int 1
+# Increase speed
+defaults write -g com.apple.mouse.scaling 5
+
+# Enable secondary button on click
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
+
+# Enable swipe with one single finger gesture to go back while browsing
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture 1
+
+# Tracking Speed: from 0 to 3
+defaults write -g com.apple.trackpad.scaling -float 3
+
+# Enable tap to click for the current user and the login screen. (Don't have to press down on the trackpad -- just tap it.)
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
+defaults write -g com.apple.mouse.tapBehavior -int 1
+
+# Trackpad: map two fingers tap to right-click
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
+
+
+###############################################################################
+# ⌨️ Keyboard, Bluetooth accessories, and input
+###############################################################################
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
@@ -85,8 +110,13 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+
 ###############################################################################
-# Screen                                                                      #
+# Bluetooth
+###############################################################################
+
+###############################################################################
+# 🖥️ Screen
 ###############################################################################
 
 # Save screenshots to Desktop folder.
@@ -99,7 +129,14 @@ defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture disable-shadow -bool true
 
 ###############################################################################
-# Finder                                                                      #
+# 🔊 Sound
+###############################################################################
+
+# always show the Sound icon in the menu bar
+defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+
+###############################################################################
+# 🔍 Finder
 ###############################################################################
 
 # Set Desktop as the default location for new Finder windows
@@ -219,38 +256,6 @@ defaults write com.apple.dock show-process-indicators -bool true
 #defaults write com.apple.dock wvous-bl-corner -int 4
 #defaults write com.apple.dock wvous-bl-modifier -int 0
 
-###############################################################################
-# 🖱️ Mouse
-###############################################################################
-
-# Increase speed
-defaults write -g com.apple.mouse.scaling 5
-
-# Enable secondary button on click
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode TwoButton
-
-# Enable swipe with one single finger gesture to go back while browsing
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture 1
-
-###############################################################################
-# 💻 Trackpad
-###############################################################################
-
-# Tracking Speed: from 0 to 3
-defaults write -g com.apple.trackpad.scaling -float 3
-
-# Enable tap to click for the current user and the login screen. (Don't have to press down on the trackpad -- just tap it.)
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
-defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
-defaults write -g com.apple.mouse.tapBehavior -int 1
-
-# Trackpad: map two fingers tap to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true
-defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1
 
 ###############################################################################
 # 🍎 Mac App Store
