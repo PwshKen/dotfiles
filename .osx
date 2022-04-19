@@ -63,8 +63,8 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
-defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Volume.menu"
+# always show scrollbars
+defaults write -g AppleShowScrollBars -string "Always"
 
 ###############################################################################
 # 🖱️ Mouse & Trackpad
@@ -139,8 +139,16 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # 🔊 Sound
 ###############################################################################
 
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+	"/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+	"/System/Library/CoreServices/Menu Extras/Battery.menu"
+
 # always show the Sound icon in the menu bar
 defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.volume" -bool true
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
 
 ###############################################################################
 # 🔍 Finder
@@ -284,7 +292,8 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 # ⚡ Power & Battery
 ###############################################################################
 
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+# this doesn't work
+# defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 ###############################################################################
 # Disable Night Shift
