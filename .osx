@@ -114,6 +114,8 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 ###############################################################################
 # Bluetooth
 ###############################################################################
+# disable AirDrop
+defaults write com.apple.NetworkBrowser DisableAirDrop -bool YES
 
 ###############################################################################
 # 🖥️ Screen
