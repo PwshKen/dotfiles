@@ -62,6 +62,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # Disable smart dashes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu"
+
 ###############################################################################
 # 🖱️ Mouse & Trackpad
 ###############################################################################
@@ -114,6 +117,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 ###############################################################################
 # Bluetooth
 ###############################################################################
+
 # disable AirDrop
 defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
 
