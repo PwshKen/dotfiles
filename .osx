@@ -116,7 +116,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # set a keyboard shortcut to lock the computer with Command+L
 #defaults write -g NSUserKeyEquivalents '{ "Lock Screen" = "@L"; }'
-defaults write NSUserKeyEquivalents -dict-add "Lock Screen" "@l"
+defaults write -g NSUserKeyEquivalents -dict-add "Lock Screen" "@l"
 
 ###############################################################################
 # Bluetooth
